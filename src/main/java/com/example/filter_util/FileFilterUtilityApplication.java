@@ -18,13 +18,14 @@ public class FileFilterUtilityApplication implements CommandLineRunner {
 		CliArguments cliArguments = new CliArguments();
 
 		CommandLine commandLine = new CommandLine(cliArguments);
-
+		commandLine.setUsageHelpWidth(120);
 		try {
 			// Запуск парсинга
 			commandLine.parseArgs(args);
 
-			// Автоматическая обработка запросов --help, --version
-			if (commandLine.isUsageHelpRequested() || commandLine.isVersionHelpRequested()) {
+			// Обработка запросов --help
+			if (commandLine.isUsageHelpRequested()) {
+				System.out.println(commandLine.getUsageMessage());
 				return;
 			}
 			// Создание и запуск основного обработчика

@@ -7,15 +7,20 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@Command(name = "file-filter-util", mixinStandardHelpOptions = true, version = "File Filter Utility 1.0", description = "Фильтрует содержимое файлов по типам данных")
+@Command(name = "file-filter-util", mixinStandardHelpOptions = true)
+
 public class CliArguments {
 
+    // Справка
+    @Option(names = { "-h", "--help" }, usageHelp = true, description = "Справочное сообщение")
+    private boolean helpRequested;
+
     // Опция для указания пути вывода, по умолчанию - текущая директория
-    @Option(names = { "-o", "--output" }, description = "Путь для выходных файлов")
+    @Option(names = { "-o", "--output" }, description = "Путь для выходных файлов", paramLabel = "PATH")
     public String outputPath = ".";
 
     // Опция для указания префикса имен файлов, по умолчанию - без префикса
-    @Option(names = { "-p", "--prefix" }, description = "Префикс для имен выходных файлов")
+    @Option(names = { "-p", "--prefix" }, description = "Префикс для имен выходных файлов", paramLabel = "PREFIX")
     public String filePrefix = "";
 
     // Флаг, включающий режим добавления данных в существующие файлы
